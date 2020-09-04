@@ -74,10 +74,12 @@ console.log('Bye');
  ![](https://miro.medium.com/max/700/1*lvOtCg75ObmUTOxIS6anEQ.png)
  ### 15.`console.log('cb1')` is removed from the Call Stack.
  ### 16.After that `cb1` is removed from the Call Stack.
- <br>
+ 
+ 
  ## Blocking the event loop
  Any JavaScript code that takes too long to return back control to the event loop will block the execution of any JavaScript code in the page, even block the UI thread, and the user cannot click around, scroll the page, and so on. This is why JavaScript is based so much on callbacks, and more recently on promises and async/await.
- <br>
+ 
+ 
  ## Resources
  - https://flaviocopes.com/javascript-event-loop/
  - https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5
