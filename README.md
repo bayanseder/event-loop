@@ -1,5 +1,5 @@
-# event-loop
-As we know JavaScript code runs in single threaded. There is just one thing happening at a time.But in JavaScript `later` doesn’t necessarily happen strictly and immediately after `now`. In other words, tasks that cannot complete now are going to complete asynchronously.
+# Event Loop
+As we know JavaScript code runs in single threaded.This means that only one set of instructions is executed at any single time.But in JavaScript `later` doesn’t necessarily happen strictly and immediately after `now`. In other words, tasks that cannot complete now are going to complete asynchronously.
 
 JavaScript has a concurrency model based on an event loop, which is responsible for executing the code, collecting and processing events, and executing queued sub-tasks.
 
@@ -7,12 +7,17 @@ The Event Loop has one simple job — to monitor the Call Stack and the Callback
 ![](https://miro.medium.com/max/700/1*FA9NGxNB6-v1oI2qGEtlRQ.png)
 
 ## Memory Heap
-This is where the memory allocation happens
+Memory Heap is a place to store and write information and data for our app(variables, objects, etc..).
+For examble 
+```js
+const number = 5
+```
+The above code is saying please allocate memory for the number variable and have it point to the value 5 in our memory heap.
 
 ## The call stack
 The call stack is a LIFO queue (Last In, First Out).
 The event loop continuously checks the call stack to see if there’s any function that needs to run.
-While doing so, it adds any function you call it to the call stack and executes each one in order.
+While doing so, it adds any function you call it to the call stack and executes each one in order.We push and pop functions off the stack one by one. And so Javascript is synchronous — only one thing can happen at a time.
 
 ## Queue
 A JavaScript runtime uses a queue, which is a list of messages to be processed. Each message has an associated function which gets called in order to handle the message.
