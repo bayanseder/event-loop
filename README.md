@@ -1,12 +1,12 @@
 # event-loop
-JavaScript code runs single threaded. There is just one thing happening at a time.In JavaScript `later` doesn’t necessarily happen strictly and immediately after `now`. In other words, tasks that cannot complete now are, by definition, going to complete asynchronously.
+As we know JavaScript code runs in single threaded. There is just one thing happening at a time.But in JavaScript `later` doesn’t necessarily happen strictly and immediately after `now`. In other words, tasks that cannot complete now are going to complete asynchronously.
 
 JavaScript has a concurrency model based on an event loop, which is responsible for executing the code, collecting and processing events, and executing queued sub-tasks.
 
 The Event Loop has one simple job — to monitor the Call Stack and the Callback Queue. If the Call Stack is empty, it will take the first event from the queue and will push it to the Call Stack, which effectively runs it.
 ![](https://miro.medium.com/max/700/1*FA9NGxNB6-v1oI2qGEtlRQ.png)
 
-## Heap
+## Memory Heap
 This is where the memory allocation happens
 
 ## The call stack
