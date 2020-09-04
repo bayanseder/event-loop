@@ -1,6 +1,8 @@
 # event-loop
+JavaScript code runs single threaded. There is just one thing happening at a time.In JavaScript `later` doesn’t necessarily happen strictly and immediately after `now`. In other words, tasks that cannot complete now are, by definition, going to complete asynchronously.
 
 JavaScript has a concurrency model based on an event loop, which is responsible for executing the code, collecting and processing events, and executing queued sub-tasks.
+
 The Event Loop has one simple job — to monitor the Call Stack and the Callback Queue. If the Call Stack is empty, it will take the first event from the queue and will push it to the Call Stack, which effectively runs it.
 ![](https://miro.medium.com/max/700/1*FA9NGxNB6-v1oI2qGEtlRQ.png)
 
@@ -26,46 +28,55 @@ setTimeout(function cb1() {
 }, 5000);
 console.log('Bye');
 ```
-### In the beginning ,The state is clear. The browser console is clear, and the Call Stack is empty.
+### 1.In the beginning ,The state is clear. The browser console is clear, and the Call Stack is empty.
 ![](https://miro.medium.com/max/700/1*9fbOuFXJHwhqa6ToCc_v2A.png)
 
-### `console.log('Hi')` is added to the Call Stack.
+### 2.`console.log('Hi')` is added to the Call Stack.
 ![](https://miro.medium.com/max/700/1*dvrghQCVQIZOfNC27Jrtlw.png)
 
-### Now `console.log('Hi')` is executed.After that `console.log('Hi')` is removed from the Call Stack.
+### 3.Now `console.log('Hi')` is executed.
+### 4.After that `console.log('Hi')` is removed from the Call Stack.
 ![](https://miro.medium.com/max/700/1*iBedryNbqtixYTKviPC1tA.png)
 
-### Now, setTimeout(function cb1() { ... }) is added to the Call Stack.
+### 5.Now, setTimeout(function cb1() { ... }) is added to the Call Stack.
 ![](https://miro.medium.com/max/700/1*HIn-BxIP38X6mF_65snMKg.png)
 
-### The browser creates a timer as part of the Web APIs. It is going to handle the countdown for you.
+### 6.The browser creates a timer as part of the Web APIs. It is going to handle the countdown for you.
 ![](https://miro.medium.com/max/700/1*vd3X2O_qRfqaEpW4AfZM4w.png)
 
- ### The `setTimeout(function cb1() { ... })` itself is complete and is removed from the Call Stack.
+ ### 7.The `setTimeout(function cb1() { ... })` itself is complete and is removed from the Call Stack.
  ![](https://miro.medium.com/max/700/1*_nYLhoZPKD_HPhpJtQeErA.png)
  
- ### Then `console.log('Bye')` is added to the Call Stack.
+ ### 8.Then `console.log('Bye')` is added to the Call Stack.
  ![](https://miro.medium.com/max/700/1*1NAeDnEv6DWFewX_C-L8mg.png)
  
- ### `console.log('Bye')` is executed.
+ ### 9.`console.log('Bye')` is executed.
  ![](https://miro.medium.com/max/700/1*UwtM7DmK1BmlBOUUYEopGQ.png)
  
- ### `console.log('Bye')` is removed from the Call Stack.
+ ### 10.`console.log('Bye')` is removed from the Call Stack.
  ![](https://miro.medium.com/max/700/1*-vHNuJsJVXvqq5dLHPt7cQ.png)
  
- ### After 5000 ms, the timer completes and it pushes the cb1 callback to the Callback Queue.
+ ### 11.After 5000 ms, the timer completes and it pushes the cb1 callback to the Callback Queue.
  ![](https://miro.medium.com/max/700/1*eOj6NVwGI2N78onh6CuCbA.png)
  
- ### The Event Loop takes cb1 from the Callback Queue and pushes it to the Call Stack.
+ ### 12.The Event Loop takes cb1 from the Callback Queue and pushes it to the Call Stack.
  ![](https://miro.medium.com/max/700/1*jQMQ9BEKPycs2wFC233aNg.png)
  
- ### `cb1` is executed and adds `console.log('cb1')` to the Call Stack.
+ ### 13.`cb1` is executed and adds `console.log('cb1')` to the Call Stack.
  ![](https://miro.medium.com/max/700/1*hpyVeL1zsaeHaqS7mU4Qfw.png)
  
- ### `console.log('cb1')` is executed.
+ ### 14.`console.log('cb1')` is executed.
  ![](https://miro.medium.com/max/700/1*lvOtCg75ObmUTOxIS6anEQ.png)
- ### `console.log('cb1')` is removed from the Call Stack.
- ### After that `cb1` is removed from the Call Stack.
+ ### 15.`console.log('cb1')` is removed from the Call Stack.
+ ### 16.After that `cb1` is removed from the Call Stack.
+ 
+ ## Blocking the event loop
+ Any JavaScript code that takes too long to return back control to the event loop will block the execution of any JavaScript code in the page, even block the UI thread, and the user cannot click around, scroll the page, and so on. This is why JavaScript is based so much on callbacks, and more recently on promises and async/await.
+ 
+ ## Resources
+ - https://flaviocopes.com/javascript-event-loop/
+ - https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5
+ - https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop
  
  
  
